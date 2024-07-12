@@ -1,0 +1,112 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SFARM.Views"
+             xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="SFARM.Views.PanelControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="560" d:DesignWidth="270">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/ButtonStyles.xaml"/>
+                <ResourceDictionary Source="/Styles/UIcolor.xaml"/>
+                <ResourceDictionary Source="/Styles/WigetsStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="{StaticResource color5}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="20px"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="20px"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1.5*"/>
+
+            <!--<RowDefinition Height="82*"/>
+            <RowDefinition Height="68*"/>
+            <RowDefinition Height="20px"/>
+            <RowDefinition Height="82*"/>
+            <RowDefinition Height="71*"/>
+            <RowDefinition Height="11*"/>
+            <RowDefinition Height="20px"/>
+            <RowDefinition Height="82*"/>
+            <RowDefinition Height="auto"/>-->
+        </Grid.RowDefinitions>
+
+        <!-- 카테고리 별 -->
+        <StackPanel Grid.Row="0" Margin="20,10,20,10">
+            <StackPanel Orientation="Horizontal">
+                <Label Style="{StaticResource PanelcontrolLabel}"  Content="급수량"/>
+                <TextBox x:Name="textBox_CumstomSliderWithTick" Margin="10,0,0,0" Height="23" Width="30" Text="{Binding Value, ElementName=CustomSlider, Mode=TwoWay}" HorizontalContentAlignment="Center" Foreground="{StaticResource color2}" BorderBrush="{StaticResource color1}" TextChanged="textBox_CumstomSliderWithTick_TextChanged">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="4"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+            </StackPanel>
+            <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Width="230">
+                <Slider x:Name="CustomSlider" IsSnapToTickEnabled="True" Value="{Binding ElementName=textBox_CumstomSliderWithTick, Path=Text, Mode=TwoWay}" Width="230" Maximum="250" TickPlacement="BottomRight" TickFrequency="20" Style="{StaticResource CustomSliderStyle}" Foreground="{StaticResource color3}"/>
+            </WrapPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+            <Grid Height="60" Width="230">
+                <syncfusion:SfTextInputLayout Grid.Column="0" FlowDirection="RightToLeft" Hint="토양 수분도" FocusedForeground="{StaticResource color6}" Foreground="{StaticResource color2}" ContainerType="Outlined">
+                    <TextBox x:Name="soil" Text="50" TextChanged="TextBox_TextChanged" />
+                </syncfusion:SfTextInputLayout>
+            </Grid>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Margin="20,10,20,10">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Label Style="{StaticResource PanelcontrolLabel}"  Content="쿨링팬 작동 온도"/>
+                <TextBox x:Name="textBox_TempTick" Text="{Binding Value, ElementName=TempSlider, Mode=TwoWay}"  HorizontalContentAlignment="Center" Foreground="{StaticResource color3}" FontWeight="Bold" FontSize="20" BorderBrush="Transparent" Background="Transparent" Height="25"/>
+                <Label Content="°C" HorizontalContentAlignment="Center" Foreground="{StaticResource color3}" FontSize="20" BorderBrush="Transparent" Background="Transparent" FontWeight="DemiBold" Height="34"/>
+            </StackPanel>
+            <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Width="230">
+                <Slider x:Name="TempSlider" IsSnapToTickEnabled="True" Value="{Binding ElementName=textBox_TempTick, Path=Text, Mode=TwoWay}" Width="230" Minimum="22" Maximum="38" TickPlacement="BottomRight" TickFrequency="1" Style="{StaticResource CustomSliderStyle}" Foreground="{StaticResource color3}" ValueChanged="TempSlider_ValueChanged" />
+            </WrapPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" HorizontalAlignment="Center" Orientation="Horizontal">
+            <!--<Label Style="{StaticResource PanelcontrolLabel}"  Content="쿨링팬 작동 세기"/>-->
+            <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="3" Width="230" Height="50">
+                <Grid Height="40">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <RadioButton GroupName="fanSpeed" Content="강" Checked="RadioButton_Checked"  Style="{DynamicResource RadioButtonStyle1}" />
+                    <RadioButton GroupName="fanSpeed" Grid.Column="1" Content="중" IsChecked="True"  Checked="RadioButton_Checked"   Style="{DynamicResource RadioButtonStyle1}"/>
+                    <RadioButton GroupName="fanSpeed" Grid.Column="2" Content="약" Checked="RadioButton_Checked"  Style="{DynamicResource RadioButtonStyle1}"/>
+                </Grid>
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="6" Margin="20,10,20,10">
+            <StackPanel Orientation="Horizontal">
+                <Label Style="{StaticResource PanelcontrolLabel}"  Content="식물등 밝기"/>
+            </StackPanel>
+            <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Width="230">
+                <Slider x:Name="LEDLightSlider" IsSnapToTickEnabled="True" Value="{Binding ElementName=textBox_LEDLightTick, Path=Text, Mode=TwoWay}" Width="190" Minimum="1" Maximum="10" TickPlacement="BottomRight" TickFrequency="1" Style="{StaticResource CustomSliderStyle}" Foreground="{StaticResource color3}"/>
+                <TextBox x:Name="textBox_LEDLightTick" Margin="10,0,0,0" Height="23" Width="30" Text="{Binding Value, ElementName=LEDLightSlider, Mode=TwoWay}" HorizontalContentAlignment="Center" Foreground="{StaticResource color2}" TextChanged="TextBox_LEDLightTick_TextChanged" BorderBrush="{StaticResource color1}">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="4"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+            </WrapPanel>
+        </StackPanel>
+
+        <!-- 세이브 버튼 주석 <Button Grid.Row="8" Width="50" Height="46" Style="{StaticResource RoundButtonTemplate}" Content="save" Margin="115,46,105,45"/>-->
+ 
+        <Line Grid.Row="2" Style="{StaticResource ControlWigetStroke}"/>
+        <Line Grid.Row="5" Style="{StaticResource ControlWigetStroke}"/>
+    </Grid>
+</UserControl>
