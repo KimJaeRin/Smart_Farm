@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="SFARM\**" />
+    <EmbeddedResource Remove="SFARM\**" />
+    <None Remove="SFARM\**" />
+    <Page Remove="SFARM\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Images\pic1.png" />
+    <None Remove="Images\방울토마토4.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="32feet.NET" Version="3.5.0" />
+    <PackageReference Include="FontAwesome.Sharp" Version="6.3.0" />
+    <PackageReference Include="Syncfusion.Licensing" Version="26.1.40" />
+    <PackageReference Include="Syncfusion.SfInput.WPF" Version="26.1.40" />
+    <PackageReference Include="Syncfusion.SfProgressBar.WPF" Version="26.1.40" />
+    <PackageReference Include="Syncfusion.SfTextInputLayout.WPF" Version="26.1.40" />
+    <PackageReference Include="Syncfusion.Shared.WPF" Version="26.1.40" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\pic1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\방울토마토4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\PanelPicture.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\PanelLiveInfo.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Custom\" />
+  </ItemGroup>
+
+</Project>
